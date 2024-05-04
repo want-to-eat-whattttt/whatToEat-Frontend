@@ -32,6 +32,11 @@ const globalStyle = css`
         display: none;
     }
     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border: 0;
+        outline: 0;
         -ms-user-select: none;
         -moz-user-select: -moz-none;
         -khtml-user-select: none;
