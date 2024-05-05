@@ -37,10 +37,6 @@ const globalStyle = css`
         box-sizing: border-box;
         border: 0;
         outline: 0;
-        -ms-user-select: none;
-        -moz-user-select: -moz-none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
         user-select: none;
         box-sizing: border-box;
         font-family: Gmarket Sans TTF;
