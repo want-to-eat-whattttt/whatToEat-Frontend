@@ -24,7 +24,6 @@ export default Option;
 
 const OptionLabel = styled.label`
     white-space: nowrap;
-    text-wrap: nowrap;
     word-break: keep-all;
     padding: 15px;
     color: ${theme.color.black};

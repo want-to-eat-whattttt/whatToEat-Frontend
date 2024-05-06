@@ -56,7 +56,8 @@ const Select = () => {
           </OptionCategory>
           <LineBox />
         </SelectContainer>
-        <Button>메뉴 추천받기</Button>
+        {/* sleectedOption 값으로 출력해주는거 확인함. 서버에값도 이런 식으로 쏴주면 될듯한데...*/}
+        <Button onClick={() => console.log(selectedOption)}>메뉴 추천받기</Button>
       </Wrapper>
 
     </ThemeProvider>
