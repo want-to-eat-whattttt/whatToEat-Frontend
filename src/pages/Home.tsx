@@ -31,5 +31,5 @@ const Wrapper = styled.div`
 `
 
 const MapWrapper = styled.div`
-  margin-top: 100px;
+  margin-top: 150px;
 `;
