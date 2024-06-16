@@ -4,9 +4,9 @@ import { Map, MapMarker } from "react-kakao-maps-sdk";
 import styled from '@emotion/styled';
 
 const KakaoMap = () => {
-  const [info, setInfo] = useState<any>()
-  const [markers, setMarkers] = useState<any>([])
-  const [map, setMap] = useState<any>()
+  const [info, setInfo] = useState<any>();
+  const [markers, setMarkers] = useState<any>([]);
+  const [map, setMap] = useState<any>();
   const { recommendation } = useRecommendation(); // Context에서 추천된 음식 가져오기
   const [searchInput, setSearchInput] = useState("");
   const [state, setState] = useState({
@@ -16,7 +16,7 @@ const KakaoMap = () => {
     },
     errMsg: null,
     isLoading: true,
-  })
+  });
 
   useEffect(() => {
     if (recommendation) {
@@ -36,25 +36,25 @@ const KakaoMap = () => {
               lng: position.coords.longitude, // 경도
             },
             isLoading: false,
-          }))
+          }));
         },
         (err) => {
           setState((prev: any) => ({
             ...prev,
             errMsg: err.message,
             isLoading: false,
-          }))
+          }));
         }
-      )
+      );
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
       setState((prev: any) => ({
         ...prev,
         errMsg: "geolocation을 사용할수 없어요..",
         isLoading: false,
-      }))
+      }));
     }
-  }, [])
+  }, []);
 
   const searchPlaces = () => {
     if (!map) return;
@@ -113,40 +113,49 @@ const KakaoMap = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-    <Map // 로드뷰를 표시할 Container
-      center={state.center}
-      style={{
-        width: "700px",
-        height: "600px",
-      }}
-      level={3}
-      onCreate={setMap}
-    >
-      {markers.map((marker: any) => (
-        <MapMarker
-          key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-          position={marker.position}
-          onClick={() => setInfo(marker)}
-        >
-          {info && info.content === marker.content && (
-            <div style={{ color: "#000" }}>{marker.content}</div>
-          )}
-        </MapMarker>
-      ))}
-    </Map>
-    <SearchContainer>
-      <SearchInput
-        type="text"
-        placeholder="검색어를 입력하세요"
-        value={searchInput}
-        onChange={(e:any) => setSearchInput(e.target.value)}
-      />
-      <SearchButton onClick={searchPlaces}>주변 식당 검색하기</SearchButton>
-      <ResultList>
-        <h3>검색 결과</h3>
-        <ul>
+      <Map // 로드뷰를 표시할 Container
+        center={state.center}
+        style={{
+          width: "600px",
+          height: "600px",
+        }}
+        level={3}
+        onCreate={setMap}
+      >
+        {markers.map((marker: any) => (
+          <MapMarker
+            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => setInfo(marker)}
+          >
+            {info && info.content === marker.content && (
+              <div style={{ color: "#000" }}>{marker.content}</div>
+            )}
+          </MapMarker>
+        ))}
+      </Map>
+      <SearchContainer>
+        <SearchInput
+          type="text"
+          placeholder="검색어를 입력하세요"
+          value={searchInput}
+          onChange={(e: any) => setSearchInput(e.target.value)}
+        />
+        <SearchButton onClick={searchPlaces}>주변 식당 검색하기</SearchButton>
+        <ResultList>
+          <h3>검색 결과</h3>
+          <ul>
             {currentPlaces.map((place: any, index: number) => (
-              <li key={index}>
+              <li
+                key={index}
+                onMouseEnter={() => {
+                  const matchedMarker = markers.find((marker: any) => marker.content === place.name);
+                  if (matchedMarker) {
+                    setInfo(matchedMarker);
+                  }
+                }}
+                onMouseLeave={() => setInfo(null)}
+              >
                 <h4>{place.name}</h4>
                 <p>주소: {place.address}</p>
                 <p>전화번호: {place.phone}</p>
@@ -159,11 +168,11 @@ const KakaoMap = () => {
             paginate={paginate}
             currentPage={currentPage}
           />
-      </ResultList>
-    </SearchContainer>
-  </div> 
-  )
-}
+        </ResultList>
+      </SearchContainer>
+    </div>
+  );
+};
 
 const Pagination = ({
   placesPerPage,
@@ -203,13 +212,13 @@ const Pagination = ({
   );
 };
 
-export default KakaoMap
+export default KakaoMap;
 
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 20px;
+  margin-left: 20px;
 `;
 
 const SearchInput = styled.input`

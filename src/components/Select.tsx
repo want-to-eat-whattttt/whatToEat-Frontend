@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled/macro';
 import { theme } from '../style/theme';
 import { ThemeProvider, Global } from '@emotion/react';
@@ -14,7 +14,7 @@ import image5 from '../img/suggestMenu-5.png';
 import image6 from '../img/suggestMenu-6.png';
 import image7 from '../img/suggestMenu-7.png';
 import image8 from '../img/suggestMenu-8.png';
-import KakaoMap from './KakaoMap';
+
 
 
 
@@ -368,13 +368,13 @@ const ResultBox = styled.div`
     align-items: center;
 `
 const Wrapper = styled.div`
-  margin-left: 150px;
+  margin-left: 200px;
   max-width: 450px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
   flex-direction: column;
-  height: 100vh; /* 전체 화면 높이를 차지하도록 설정 */
+  height: 80vh; /* 전체 화면 높이를 차지하도록 설정 */
 `
 const LineBox = styled.div`
 	border-bottom: 2px solid ${({ theme }) => theme.color.black};
@@ -383,7 +383,7 @@ const SelectContainer = styled.div`
     margin: 40px 15px;
     width: 400px;
     border-top: 2px solid ${({ theme }) => theme.color.black};
-`
+    `
 
 const OptionCategory = styled.div`
 		display: flex;

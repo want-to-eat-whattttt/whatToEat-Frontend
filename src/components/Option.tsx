@@ -30,7 +30,7 @@ const OptionLabel = styled.label`
     font-size: 16px;
     font-weight: 450;
     cursor: pointer;
-    background-color: ${theme.color.white};
+    background-color: #ece8e2;
 
     &.clicked {
       background-color: ${theme.color.main400}; // 클릭된 항목의 배경색을 변경합니다.

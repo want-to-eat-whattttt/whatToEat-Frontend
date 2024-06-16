@@ -20,10 +20,11 @@ export const colors = {
 const globalStyle = css`
     html,
     body {
-        width: 100%;
-        height: 100%;
+        width: 1920px;
+        height: 1080px;
         margin: 0;
         padding: 0;
+        background-color: #ece8e2;
     }
     *::-webkit-scrollbar {
         display: none;
