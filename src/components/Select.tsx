@@ -1,11 +1,3 @@
-import React, { useState } from 'react';
-import styled from '@emotion/styled/macro';
-import { theme } from '../style/theme';
-import { ThemeProvider, Global } from '@emotion/react';
-import globalStyle from '../style/globalStyle';
-import Option from './Option';
-import { useRecommendation } from '../context/RecomendationContext';
-
 import image1 from '../img/suggestMenu-1.png';
 import image2 from '../img/suggestMenu-2.png';
 import image3 from '../img/suggestMenu-3.png';
@@ -15,9 +7,13 @@ import image6 from '../img/suggestMenu-6.png';
 import image7 from '../img/suggestMenu-7.png';
 import image8 from '../img/suggestMenu-8.png';
 
-
-
-
+import React, { useState } from 'react';
+import styled from '@emotion/styled/macro';
+import { theme } from '../style/theme';
+import { ThemeProvider, Global } from '@emotion/react';
+import globalStyle from '../style/globalStyle';
+import Option from './Option';
+import { useRecommendation } from '../context/RecomendationContext';
 
 const Select = () => {
 
@@ -172,7 +168,7 @@ const Select = () => {
       kr: {
         allState: '감자전',
         solo: '계란말이',
-        friend: '두부전골',
+        friend: '삼겹살',
         couple: '대게',
         family: '아귀찜',
         gather: '두루치기',
