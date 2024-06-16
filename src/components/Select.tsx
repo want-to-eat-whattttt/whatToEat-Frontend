@@ -14,6 +14,7 @@ import { ThemeProvider, Global } from '@emotion/react';
 import globalStyle from '../style/globalStyle';
 import Option from './Option';
 import { useRecommendation } from '../context/RecomendationContext';
+import axios from 'axios';
 
 const Select = () => {
 
@@ -260,32 +261,68 @@ const Select = () => {
     },
   };
 
-  const handlePost = () => {
+  // const handlePost = () => {
+  //   setIsSearching(true);
+  //   setRecommendation(null);
+  //   setCurrentImageIndex(0);
+
+  //   const { type, nation, state } = selectedOption;
+
+  //   setTimeout(() => {
+  //     if (recommendations[type] && recommendations[type][nation] && recommendations[type][nation][state]) {
+  //       const recommendation = recommendations[type][nation][state];
+  //       setRecommendation(recommendation);
+  //     } else {
+  //       setRecommendation('추천 메뉴가 없습니다.');
+  //     }
+  //     setIsSearching(false);
+  //   }, 2000); // 2.5초 후에 추천 결과 표시
+
+  //   // 이미지 순환
+  //   const interval = setInterval(() => {
+  //     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  //   }, 150); // 0.5초 간격으로 이미지 변경
+
+  //   setTimeout(() => {
+  //     clearInterval(interval);
+  //   }, 2000); // 2초 후에 이미지 순환 중지
+
+  // };
+
+  const handlePost = async () => {
     setIsSearching(true);
     setRecommendation(null);
     setCurrentImageIndex(0);
-
+  
     const { type, nation, state } = selectedOption;
-
-    setTimeout(() => {
-      if (recommendations[type] && recommendations[type][nation] && recommendations[type][nation][state]) {
-        const recommendation = recommendations[type][nation][state];
-        setRecommendation(recommendation);
+  
+    try {
+      const response = await axios.post('http://localhost:8000/recommendation', {
+        type,
+        nation,
+        state,
+      });
+  
+      if (response.data.recommendation) {
+        setRecommendation(response.data.recommendation);
       } else {
         setRecommendation('추천 메뉴가 없습니다.');
       }
+    } catch (error) {
+      setRecommendation('추천 메뉴를 불러오는 중 오류가 발생했습니다.');
+      console.error(error);
+    } finally {
       setIsSearching(false);
-    }, 2000); // 2.5초 후에 추천 결과 표시
-
+    }
+  
     // 이미지 순환
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 150); // 0.5초 간격으로 이미지 변경
-
+    }, 150);
+  
     setTimeout(() => {
       clearInterval(interval);
-    }, 2000); // 2초 후에 이미지 순환 중지
-
+    }, 2000);
   };
 
 
