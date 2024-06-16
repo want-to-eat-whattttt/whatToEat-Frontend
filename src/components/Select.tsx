@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import styled from '@emotion/styled/macro';
 import { theme } from '../style/theme';
 import { ThemeProvider, Global } from '@emotion/react';
 import globalStyle from '../style/globalStyle';
 import Option from './Option';
+import { useRecommendation } from '../context/RecomendationContext';
+
 import image1 from '../img/suggestMenu-1.png';
 import image2 from '../img/suggestMenu-2.png';
 import image3 from '../img/suggestMenu-3.png';
@@ -12,6 +14,7 @@ import image5 from '../img/suggestMenu-5.png';
 import image6 from '../img/suggestMenu-6.png';
 import image7 from '../img/suggestMenu-7.png';
 import image8 from '../img/suggestMenu-8.png';
+import KakaoMap from './KakaoMap';
 
 
 
@@ -24,11 +27,11 @@ const Select = () => {
     nation: 'allNation',
     state: 'allState',
   });
-
+  
   const [isSearching, setIsSearching] = useState(false);
-  const [recommendation, setRecommendation] = useState<string | null>(null);
+  const {recommendation, setRecommendation} = useRecommendation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  
   const images = [
     image1,
     image2,
@@ -286,6 +289,7 @@ const Select = () => {
     setTimeout(() => {
       clearInterval(interval);
     }, 2000); // 2초 후에 이미지 순환 중지
+
   };
 
 
