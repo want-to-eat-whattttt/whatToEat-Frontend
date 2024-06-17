@@ -1,6 +1,5 @@
 import React from 'react'
 import Select from '../components/Select'
-import { Map } from 'react-kakao-maps-sdk'
 import styled from '@emotion/styled'
 import KakaoMap from '../components/KakaoMap'
 import Header from '../components/Header'
