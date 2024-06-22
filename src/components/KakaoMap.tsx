@@ -96,7 +96,7 @@ const KakaoMap = () => {
       }
     }, {
       location: new window.kakao.maps.LatLng(lat, lng), // 현재 위치 정보 사용
-      radius: 5000, // 1km 반경 내에서 검색
+      radius: 5000, // 5km 반경 내에서 검색
     });
   };
 
