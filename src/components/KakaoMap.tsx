@@ -155,6 +155,7 @@ const KakaoMap = () => {
                   }
                 }}
                 onMouseLeave={() => setInfo(null)}
+                onClick={() => handleGoogleSearch(place)}
               >
                 <h4>{place.name}</h4>
                 <p>주소: {place.address}</p>
@@ -173,6 +174,11 @@ const KakaoMap = () => {
     </div>
   );
 };
+
+function handleGoogleSearch(place: any) {
+  const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(place.name)} ${encodeURIComponent(place.address)}`;
+  window.open(googleSearchUrl, '_blank');
+}
 
 const Pagination = ({
   placesPerPage,
