@@ -241,7 +241,7 @@ const SearchButton = styled.button`
   height: 40px;
   padding: 0 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #8bc34a;
   color: #fff;
   border: none;
   border-radius: 4px;
