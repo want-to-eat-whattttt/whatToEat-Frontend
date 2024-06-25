@@ -36,7 +36,7 @@ const Logo = styled.img`
 
 const TitleBar = styled.aside`
     width: 100vw;
-    height: 32px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
